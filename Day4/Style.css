@@ -1,0 +1,55 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #222222;
+  --input-bg: #f5f5f5;
+  --border-color: #cccccc;
+  --button-bg: #222222;
+  --button-text: #ffffff;
+}
+
+body.dark {
+  --bg-color: #1e1e1e;
+  --text-color: #ffffff;
+  --input-bg: #2d2d2d;
+  --border-color: #555555;
+  --button-bg: #ffffff;
+  --button-text: #222222;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 200px;
+  padding: 10px;
+  margin-top: 8px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 16px;
+  margin-right: 8px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  cursor: pointer;
+}
+
+.warning {
+  color: orange;
+}
+
+.over {
+  color: red;
+  font-weight: bold;
+}
