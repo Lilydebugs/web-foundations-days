@@ -6,7 +6,11 @@ const noteCount = document.getElementById("note-count");
 const errorMessage = document.getElementById("error-message");
 const searchInput = document.getElementById("search-input");
 
-let notes = [];
+let notes = JSON.parse(localStorage.getItem("notes")) || [];
+
+function saveNotes() {
+  localStorage.setItem("notes", JSON.stringify(notes));
+}
 
 function updateNoteCount() {
   if (notes.length === 0) {
@@ -21,19 +25,31 @@ function updateNoteCount() {
 function renderNotes() {
   notesList.innerHTML = "";
 
-  notes.forEach((note) => {
-    const li = document.createElement("li");
-    li.className = `note-card category-${note.category.toLowerCase()}`;
+  const searchWords = searchInput.value.trim().toLowerCase();
 
-    li.innerHTML = `
-      <p>${note.text}</p>
-      <span class="category-label">${note.category}</span>
-      <p class="date">${note.createdAt}</p>
-      <button type="button" data-id="${note.id}">Delete</button>
-    `;
+  const filteredNotes = notes.filter((note) =>
+    note.text.toLowerCase().includes(searchWords)
+  );
 
-    notesList.appendChild(li);
-  });
+  if (filteredNotes.length === 0 && searchWords !== "") {
+    const message = document.createElement("li");
+    message.textContent = "No notes match your search.";
+    notesList.appendChild(message);
+  } else {
+    filteredNotes.forEach((note) => {
+      const li = document.createElement("li");
+      li.className = `note-card category-${note.category.toLowerCase()}`;
+
+      li.innerHTML = `
+        <p>${note.text}</p>
+        <span class="category-label">${note.category}</span>
+        <p class="date">${note.createdAt}</p>
+        <button type="button" data-id="${note.id}">Delete</button>
+      `;
+
+      notesList.appendChild(li);
+    });
+  }
 
   updateNoteCount();
 }
@@ -65,6 +81,7 @@ noteForm.addEventListener("submit", (event) => {
 
   notes.push(newNote);
 
+  saveNotes();
   renderNotes();
 
   noteInput.value = "";
@@ -76,6 +93,11 @@ notesList.addEventListener("click", (event) => {
 
     notes = notes.filter((note) => note.id !== id);
 
+    saveNotes();
     renderNotes();
   }
 });
+
+searchInput.addEventListener("input", renderNotes);
+
+renderNotes();
