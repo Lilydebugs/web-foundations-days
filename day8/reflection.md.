@@ -1,0 +1,7 @@
+Day 8 Reflection
+
+The most difficult concept in this course was system design, especially understanding how to handle many users accessing a system at the same time. At first, concepts such as caching, horizontal scaling, database transactions, and preventing double-booking seemed complicated. I overcame this by breaking the concepts into smaller parts, following the course lessons, answering quizzes, and applying what I learned to practical projects like QuickNotes and TicketHub. Working through the assignments helped me understand how different components work together.
+
+Based on feedback on my capstone, I would improve the documentation and testing. I would add more detailed explanations of how the API handles errors, how the system behaves when the server is unavailable, and how it protects data from inconsistencies. I would also test the application more thoroughly to identify problems before users encounter them.
+
+Next, I want to learn more about backend development, databases, authentication, and deploying applications online. I would also like to practise using Git and GitHub more confidently and learn how to build complete applications that connect a frontend to a backend. My goal is to keep improving through practice and eventually become a software engineer. This course has taught me that learning to code requires patience, consistency, and a willingness to solve problems step by step.
